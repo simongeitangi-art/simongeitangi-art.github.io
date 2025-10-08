@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- 1. CSS Variables & Reset --- */
+        :root {
+            --dark-bg: #1a1a2e; /* Dark Purple-Blue */
+            --primary-color: #00bcd4; /* Cyan/Aqua - for accent */
+            --secondary-color: #f0f0f0; /* Light text */
+            --card-bg: #2c2c44;
+            --font-main: 'Arial', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: var(--dark-bg);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #00e5ff; /* Lighter cyan */
+        }
+
+        /* --- 2. Header & Navigation --- */
+        header {
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--secondary-color);
+            font-weight: 500;
+            padding-bottom: 5px;
+            transition: border-bottom 0.3s ease;
+        }
+        nav ul li a:hover {
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* --- 3. Hero Section (with Animation) --- */
+        #hero {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f0f1c 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        #hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        #hero p.tagline {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+        
+        /* Button Style */
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #00e5ff;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Animation: Scanning Grid */
+        .scanning-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            animation: scan-move 8s infinite linear;
+            opacity: 0.3;
+        }
+
+        .scan-line:nth-child(2) { animation-delay: 2s; }
+        .scan-line:nth-child(3) { animation-delay: 4s; }
+        .scan-line:nth-child(4) { animation-delay: 6s; }
+
+        @keyframes scan-move {
+            0% { transform: translateY(0vh); opacity: 0.2; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0.2; }
+        }
+
+        /* --- 4. Section Styling --- */
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        section:nth-child(odd) {
+            background-color: #121221;
+        }
+        
+        section h2 {
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 50px;
+        }
+
+        /* --- 5. Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3);
+        }
+
+        .skill-item i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .skill-item h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        /* --- 6. Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .project-card-content {
+            padding: 20px;
+        }
+
+        .project-card-content h3 {
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .project-card-content p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        /* --- 7. Contact Section --- */
+        #contact p {
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            color: #ddd;
+        }
+
+        .contact-links a {
+            font-size: 2em;
+            margin: 0 15px;
+            color: var(--primary-color);
+        }
+        .contact-links a:hover {
+            color: #00e5ff;
+        }
+
+        /* --- 8. Footer --- */
+        footer {
+            background-color: #10101c;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+            font-size: 0.9em;
+            color: #999;
+        }
+        
+        /* --- 9. Media Queries (Responsiveness) --- */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            #hero h1 {
+                font-size: 2.5em;
+            }
+            #hero p.tagline {
+                font-size: 1.1em;
+            }
+            
+            .contact-links a {
+                font-size: 1.5em;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#hero" class="logo">HOME</a>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="scanning-grid">
+            <div class="scan-line"></div>
+            <div class="scan-line"></div>
+            <div class="scan-line"></div>
+            <div class="scan-line"></div>
+        </div>
+        <div class="container hero-content">
+            <h1>Protecting Digital Assets.</h1>
+            <p class="tagline">Simon Geitangi | Cybersecurity Professional | OT/ICS Systems</p>
+            <a href="#projects" class="btn">View My Portfolio</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p style="max-width: 800px; margin: 0 auto 30px;">
+                I am a dedicated cybersecurity professional with focused experience on *defense-in-depth* strategies and *vulnerability management*. My expertise lies in translating complex risks into actionable security solutions, ensuring compliance, and responding effectively to incidents. I am passionate about securing cloud environments and automating security operations.
+            </p>
+            <img width="100" height="100" src="file:///C:/Users/Administrator/Desktop/MACH1631-Edit.jpg" alt="Professional Photo" style="border-radius: 50%; border: 4px solid var(--primary-color); margin-top: 10px;">
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Key Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Offensive Security</h3>
+                    <p>Penetration Testing (Web/Network), Vulnerability Assessment, Exploit Development (Educational)</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Defensive Security</h3>
+                    <p>SIEM/SOC Operations, Incident Response, Threat Intelligence, Endpoint Detection (EDR)</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Security</h3>
+                    <p>AWS/Azure Security, IAM, Configuration Hardening, Compliance (NIST, ISO 27001)</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Tools & Scripting</h3>
+                    <p>Python, Bash, Splunk, Metasploit, Nmap, Burp Suite, Wireshark</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200?text=Project+1+Image" alt="Project 1: Incident Response">
+                    <div class="project-card-content">
+                        <h3>Incident Response Playbook</h3>
+                        <p>Developed and implemented a full IR playbook for a multi-cloud environment, reducing mean-time-to-containment by 40%.</p>
+                        <a href="#" style="font-size: 0.9em; font-weight: bold;">View Details &rarr;</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200?text=Project+2+Image" alt="Project 2: Pentest">
+                    <div class="project-card-content">
+                        <h3>Web App Penetration Test</h3>
+                        <p>Conducted a deep-dive security assessment on a Flask application, identifying and remediating critical XSS and CSRF vulnerabilities.</p>
+                        <a href="#" style="font-size: 0.9em; font-weight: bold;">View Details &rarr;</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200?text=Project+3+Image" alt="Project 3: Automation">
+                    <div class="project-card-content">
+                        <h3>Security Automation Script</h3>
+                        <p>Wrote a Python script to automate log analysis and generate compliance reports, saving the operations team 10+ hours per week.</p>
+                        <a href="#" style="font-size: 0.9em; font-weight: bold;">View Details &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>I'm available for new opportunities, collaborations, or simply to discuss the latest in cybersecurity. Reach out!</p>
+            <div class="contact-links">
+                <a href="https://linkedin.com/in/simon-g-229a5251" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/simongeitangi-art" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+				<a href="mailto:simon.geitangi@student.moringaschool.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 [Simon Geitangi]. All Rights Reserved. Built with HTML, CSS, and Security in Mind.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for smooth scrolling (optional, but good practice)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
